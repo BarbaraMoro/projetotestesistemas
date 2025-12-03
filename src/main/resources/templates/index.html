@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gerenciador de SA - Home</title>
+    <link rel="stylesheet" th:href="@{/style/style.css}" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Gerenciador de SA</h1>
+
+      <div class="nav-buttons">
+        <a href="/">Home</a>
+        <a href="/alunos">Gerenciar Alunos</a>
+      </div>
+
+      <div
+        th:if="${mensagem}"
+        th:class="${'alert alert-' + (tipoMensagem != null ? tipoMensagem : 'success')}"
+        th:text="${mensagem}"
+      ></div>
+
+      <div class="controls">
+        <h2>Lista de Alunos</h2>
+        <p style="margin-bottom: 15px; color: #666">
+          <a
+            href="/alunos"
+            style="color: #667eea; text-decoration: none; font-weight: bold"
+          >
+            Visualizar todos os alunos
+          </a>
+        </p>
+
+        <div class="student-list">
+          <div th:if="${#lists.isEmpty(alunos)}" class="no-students">
+            Nenhum aluno cadastrado.
+            <a href="/alunos" style="color: #667eea">Adicione alunos aqui</a>
+          </div>
+
+          <div th:each="aluno : ${alunos}" class="student-tag">
+            <span th:text="${aluno.nome}"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cards-grid">
+        <div th:each="exercicio : ${exercicios}" class="card">
+          <div class="card-header" th:text="${exercicio.titulo}"></div>
+          <div class="card-description" th:text="${exercicio.descricao}"></div>
+
+          <form
+            th:action="@{/exercicio/atribuir}"
+            method="post"
+            class="card-select-group"
+          >
+            <input
+              type="hidden"
+              name="exercicioId"
+              th:value="${exercicio.id}"
+            />
+            <label th:for="'select-' + ${exercicio.id}">Responsável:</label>
+            <select
+              th:id="'select-' + ${exercicio.id}"
+              name="alunoId"
+              onchange="this.form.submit()"
+            >
+              <option value="">-- Selecione um aluno --</option>
+              <option
+                th:each="aluno : ${alunos}"
+                th:value="${aluno.id}"
+                th:text="${aluno.nome}"
+                th:selected="${exercicio.aluno != null && exercicio.aluno.id == aluno.id}"
+              ></option>
+            </select>
+          </form>
+
+          <div th:if="${exercicio.aluno != null}" class="assigned-badge">
+            ✓ Atribuído a <span th:text="${exercicio.aluno.nome}"></span>
+          </div>
+        </div>
+      </div>
+
+      <a href="/exportar" class="export-btn">Exportar Distribuição</a>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gerenciador SA - Listagem</title>
+    <link rel="stylesheet" th:href="@{/style/alunos/lista.css}" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Gerenciar Alunos</h1>
+
+      <div class="nav-buttons">
+        <a href="/">Home</a>
+        <a href="/alunos"> Gerenciar Alunos</a>
+      </div>
+
+      <div
+        th:if="${mensagem}"
+        th:class="${'alert alert-' + (tipoMensagem != null ? tipoMensagem : 'success')}"
+        th:text="${mensagem}"
+      ></div>
+
+      <div class="form-container">
+        <h2>Adicionar</h2>
+        <form th:action="@{/alunos/adicionar}" method="post">
+          <div class="form-group">
+            <label for="nome">Nome:</label>
+            <input
+              type="text"
+              id="nome"
+              name="nome"
+              placeholder="Digite o nome completo do aluno"
+              required
+              autofocus
+            />
+          </div>
+          <button type="submit" class="btn btn-primary">Adicionar</button>
+        </form>
+      </div>
+
+      <div class="table-container">
+        <h2>Lista de Alunos Cadastrados</h2>
+
+        <div th:if="${#lists.isEmpty(alunos)}" class="no-data">
+          Nenhum aluno cadastrado ainda. Adicione o primeiro aluno usando o
+          formulário acima.
+        </div>
+
+        <table th:if="${!#lists.isEmpty(alunos)}">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nome</th>
+              <th>Exercícios Atribuídos</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="aluno : ${alunos}">
+              <td th:text="${aluno.id}"></td>
+              <td th:text="${aluno.nome}"></td>
+              <td th:text="${#lists.size(aluno.exercicios)}"></td>
+              <td class="actions">
+                <a
+                  th:href="@{'/alunos/editar/' + ${aluno.id}}"
+                  class="btn btn-edit"
+                  >Editar</a
+                >
+                <form
+                  th:action="@{'/alunos/remover/' + ${aluno.id}}"
+                  method="post"
+                  style="display: inline"
+                  onsubmit="return confirm('Tem certeza que deseja remover este aluno? Todos os exercícios atribuídos a ele serão desvinculados.')"
+                >
+                  <button type="submit" class="btn btn-danger">Remover</button>
+                </form>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

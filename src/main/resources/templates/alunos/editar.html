@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gerenciador SA - Editar Aluno</title>
+    <link rel="stylesheet" th:href="@{/style/alunos/editar.css}" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="form-card">
+        <h1>Editar Aluno</h1>
+
+        <div class="info-box">
+          <p><strong>ID:</strong> <span th:text="${aluno.id}"></span></p>
+        </div>
+
+        <form th:action="@{'/alunos/editar/' + ${aluno.id}}" method="post">
+          <div class="form-group">
+            <label for="nome">Nome:</label>
+            <input
+              type="text"
+              id="nome"
+              name="nome"
+              th:value="${aluno.nome}"
+              placeholder="Digite o nome completo do aluno"
+              required
+              autofocus
+            />
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Salvar</button>
+            <a href="/alunos" class="btn btn-secondary">Cancelar</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

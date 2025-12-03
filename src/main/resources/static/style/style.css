@@ -1,0 +1,228 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #3a3a3a;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+h1 {
+  color: #faf3ed;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2.5em;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.alert-success {
+  background: #8fedc2;
+  color: #166d8a;
+  border: 1px solid #24b4a5;
+}
+
+.alert-error {
+  background: #fdd741;
+  color: #166d8a;
+  border: 1px solid #fdd741;
+}
+
+.nav-buttons {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.nav-buttons a {
+  display: inline-block;
+  padding: 12px 25px;
+  background: #faf3ed;
+  color: #166d8a;
+  text-decoration: none;
+  border-radius: 25px;
+  font-weight: bold;
+  margin: 0 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.nav-buttons a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  background: #fdd741;
+}
+
+.controls {
+  background: #faf3ed;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.controls h2 {
+  margin-bottom: 15px;
+  color: #166d8a;
+}
+
+.controls p {
+  margin-bottom: 15px;
+  color: #666;
+}
+
+.controls p a {
+  color: #24b4a5;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.controls p a:hover {
+  color: #166d8a;
+}
+
+.student-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.student-tag {
+  background: #8fedc2;
+  color: #166d8a;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: #faf3ed;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-top: 4px solid #24b4a5;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+  border-top-color: #fdd741;
+}
+
+.card-header {
+  color: #166d8a;
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #24b4a5;
+}
+
+.card-description {
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  font-size: 14px;
+  white-space: pre-line;
+}
+
+.card-select-group {
+  margin-top: 15px;
+}
+
+.card-select-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #166d8a;
+  font-weight: bold;
+}
+
+.card-select-group select {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #8fedc2;
+  border-radius: 5px;
+  font-size: 14px;
+  background: white;
+  cursor: pointer;
+  color: #166d8a;
+}
+
+.card-select-group select:focus {
+  outline: none;
+  border-color: #24b4a5;
+}
+
+.export-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  padding: 15px 30px;
+  background: #fdd741;
+  color: #166d8a;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  box-shadow: 0 5px 20px rgba(253, 215, 65, 0.4);
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.export-btn:hover {
+  background: #24b4a5;
+  color: #faf3ed;
+  transform: scale(1.05);
+}
+
+.no-students {
+  padding: 10px;
+  background: #fdd741;
+  border: 1px solid #fdd741;
+  border-radius: 5px;
+  color: #166d8a;
+  text-align: center;
+}
+
+.no-students a {
+  color: #166d8a;
+  font-weight: bold;
+}
+
+.assigned-badge {
+  display: inline-block;
+  background: #24b4a5;
+  color: #faf3ed;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  margin-top: 10px;
+  font-weight: 500;
+}

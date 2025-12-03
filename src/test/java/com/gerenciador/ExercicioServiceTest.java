@@ -72,4 +72,5 @@ class ExercicioServiceTest {
         // Verifica se o método deleteById foi chamado corretamente
         verify(exercicioRepository, times(1)).deleteById(exercicioId);
     }
+}
 

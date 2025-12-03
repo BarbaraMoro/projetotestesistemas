@@ -109,3 +109,4 @@ class AlunoServiceTest {
         // Garante que o save não foi chamado
         verify(alunoRepository, never()).save(any(Aluno.class));
     }
+}
